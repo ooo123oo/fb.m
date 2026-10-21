@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>فيسبوك</title>
+    <!-- استدعاء مكتبة الأيقونات FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: Tahoma, Arial, sans-serif;
+            font-weight: 700;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 0;
+            direction: rtl;
+        } 
+
+        header {
+            background-color: #ffffff;
+            color: #1877f2;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 16px;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            box-sizing: border-box;
+            z-index: 1000;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        } 
+
+        .logo-area {
+            font-size: 28px;
+            font-weight: 900;
+            letter-spacing: -1px;
+            color: #1877f2;
+        } 
+
+        .search-area input {
+            background-color: #f0f2f5;
+            border: none;
+            border-radius: 50px;
+            padding: 8px 15px;
+            width: 240px;
+            font-family: Tahoma, Arial, sans-serif;
+            font-weight: 700;
+            outline: none;
+            box-sizing: border-box;
+        } 
+
+        .user-nav {
+            font-weight: 800;
+            font-size: 14px;
+            color: #050505;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        } 
+
+        .main-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 60px;
+            padding: 20px;
+        } 
+
+        .feed {
+            width: 500px;
+        } 
+
+        .create-post-box {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+            padding: 12px 16px;
+            margin-bottom: 15px;
+        } 
+
+        .post-input-container {
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid #e4e6eb;
+            padding-bottom: 10px;
+        } 
+
+        .avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #1877f2;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            margin-left: 10px;
+            flex-shrink: 0;
+        } 
+
+        .post-input-container input {
+            flex: 1;
+            background-color: #f0f2f5;
+            border: none;
+            border-radius: 20px;
+            padding: 10px 15px;
+            font-size: 14px;
+            font-family: Tahoma, Arial, sans-serif;
+            font-weight: 700;
+            outline: none;
+            cursor: pointer;
+            box-sizing: border-box;
+        } 
+
+        .post-actions {
+            display: flex;
+            justify-content: space-around;
+            padding-top: 8px;
+            font-weight: 800;
+            color: #65676b;
+            font-size: 13px;
+        } 
+
+        .post-action-btn {
+            cursor: pointer;
+            padding: 5px 15px;
+            border-radius: 4px;
+            transition: background 0.2s;
+        } 
+
+        .post-action-btn:hover {
+            background-color: #f2f2f2;
+        } 
+
+        .post-card {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+            margin-bottom: 15px;
+            padding: 12px 16px;
+        } 
+
+        .post-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        } 
+
+        .post-user-info {
+            margin-right: 10px;
+        } 
+
+        .post-username {
+            font-weight: 900;
+            font-size: 15px;
+            color: #050505;
+        } 
+
+        .post-time {
+            font-size: 12px;
+            font-weight: 700;
+            color: #65676b;
+        } 
+
+        .post-content {
+            font-size: 15px;
+            font-weight: 700;
+            color: #050505;
+            line-height: 1.6;
+            margin-bottom: 12px;
+            word-break: break-word;
+            white-space: pre-wrap;
+        } 
+
+        .post-footer-stats {
+            display: flex;
+            justify-content: space-between;
+            font-size: 13px;
+            font-weight: 700;
+            color: #65676b;
+            border-bottom: 1px solid #e4e6eb;
+            padding-bottom: 8px;
+            margin-bottom: 5px;
+        } 
+
+        .post-footer-buttons {
+            display: flex;
+            justify-content: space-around;
+            font-weight: 800;
+            color: #65676b;
+            font-size: 13px;
+            border-bottom: 1px solid #e4e6eb;
+            padding-bottom: 5px;
+            margin-bottom: 8px;
+        } 
+
+        .footer-btn {
+            cursor: pointer;
+            flex: 1;
+            text-align: center;
+            padding: 6px;
+            border-radius: 4px;
+            transition: color 0.2s;
+        } 
+
+        .footer-btn:hover {
+            background-color: #f2f2f2;
+        }
+
+        .footer-btn.liked {
+            color: #1877f2;
+        }
+
+        /* قسم التعليقات */
+        .comments-section {
+            margin-top: 8px;
+        }
+
+        .comment-list {
+            max-height: 150px;
+            overflow-y: auto;
+            margin-bottom: 8px;
+        }
+
+        .comment-item {
+            background-color: #f0f2f5;
+            padding: 6px 10px;
+            border-radius: 15px;
+            margin-bottom: 5px;
+            font-size: 13px;
+            font-weight: 700;
+            word-break: break-word;
+        }
+
+        .comment-input-box {
+            display: flex;
+            gap: 5px;
+        }
+
+        .comment-input-box input {
+            flex: 1;
+            background-color: #f0f2f5;
+            border: none;
+            border-radius: 20px;
+            padding: 6px 12px;
+            font-size: 13px;
+            outline: none;
+            font-family: Tahoma, Arial, sans-serif;
+            font-weight: 700;
+            box-sizing: border-box;
+        }
+
+        .comment-input-box button {
+            background: none;
+            border: none;
+            color: #1877f2;
+            cursor: pointer;
+            font-weight: 900;
+            font-size: 14px;
+        }
+
+        /* نافذة النشر المُحدثة */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        } 
+
+        .modal-content {
+            background: white;
+            width: 500px;
+            min-height: 350px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        } 
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 16px;
+            border-bottom: 1px solid #e4e6eb;
+            font-weight: 900;
+            font-size: 18px;
+        } 
+
+        .close-btn {
+            background: #e4e6eb;
+            border: none;
+            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+            cursor: pointer;
+            font-weight: 900;
+            font-size: 16px;
+        } 
+
+        .modal-body {
+            padding: 20px;
+            flex: 1;
+        } 
+
+        .modal-body textarea {
+            width: 100%;
+            height: 200px;
+            border: none;
+            resize: none;
+            font-family: Tahoma, Arial, sans-serif;
+            font-weight: 700;
+            font-size: 16px;
+            outline: none;
+            line-height: 1.6;
+            white-space: pre-wrap;
+            box-sizing: border-box;
+        } 
+
+        .modal-footer {
+            padding: 15px 20px;
+            border-top: 1px solid #e4e6eb;
+        } 
+
+        .submit-post-btn {
+            background-color: #1877f2;
+            color: white;
+            border: none;
+            width: 100%;
+            padding: 12px;
+            border-radius: 6px;
+            font-weight: 900;
+            font-size: 16px;
+            cursor: pointer;
+        } 
+
+        .submit-post-btn:hover {
+            background-color: #166fe5;
+        }
+    </style>
+</head>
+<body> 
+
+    <header>
+        <div class="logo-area">facebook</div>
+        <div class="search-area">
+            <input type="text" placeholder="بحث فيسبوك">
+        </div>
+        <div class="user-nav">
+            <div class="avatar" style="width: 30px; height: 30px; font-size: 12px; margin: 0;">أ</div>
+            أحمد محمد
+        </div>
+    </header> 
+
+    <div class="main-container">
+        <div class="feed" id="feedContainer">
+            
+            <div class="create-post-box">
+                <div class="post-input-container">
+                    <div class="avatar">أ</div>
+                    <input type="text" id="openModalInput" placeholder="بماذا تفكر يا أحمد؟" readonly>
+                </div>
+                <div class="post-actions">
+                    <div class="post-action-btn"><i class="fa-solid fa-video" style="color: #f3425f;"></i> فيديو مباشر</div>
+                    <div class="post-action-btn"><i class="fa-solid fa-images" style="color: #45bd62;"></i> صورة/فيديو</div>
+                    <div class="post-action-btn"><i class="fa-solid fa-face-smile" style="color: #f7b125;"></i> شعور/نشاط</div>
+                </div>
+            </div> 
+
+            <!-- المنشور الأول -->
+            <div class="post-card">
+                <div class="post-header">
+                    <div class="avatar" style="background-color: #e41e3f;">ف</div>
+                    <div class="post-user-info">
+                        <div class="post-username">فاطمة الزهراء</div>
+                        <div class="post-time">منذ ساعتين</div>
+                    </div>
+                </div>
+                <div class="post-content">الحمد لله على كل حال، بداية أسبوع موفق للجميع إن شاء الله 🌸</div>
+                <div class="post-footer-stats">
+                    <span class="likes-count"><i class="fa-solid fa-thumbs-up" style="color: #1877f2;"></i> 45</span>
+                    <span class="comments-count">1 تعليقات</span>
+                </div>
+                <div class="post-footer-buttons">
+                    <div class="footer-btn like-btn"><i class="fa-regular fa-thumbs-up"></i> أعجبني</div>
+                    <div class="footer-btn comment-toggle-btn"><i class="fa-regular fa-comment"></i> تعليق</div>
+                    <div class="footer-btn"><i class="fa-solid fa-share"></i> مشاركة</div>
+                </div>
+                <div class="comments-section">
+                    <div class="comment-list">
+                        <div class="comment-item"><b>أحمد محمد:</b> آمين يارب، جمعة مباركة!</div>
+                    </div>
+                    <div class="comment-input-box">
+                        <input type="text" placeholder="اكتب تعليقاً..." class="comment-input">
+                        <button class="send-comment-btn"><i class="fa-solid fa-paper-plane"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- المنشور الثاني -->
+            <div class="post-card">
+                <div class="post-header">
+                    <div class="avatar">م</div>
+                    <div class="post-user-info">
+                        <div class="post-username">محمود علي</div>
+                        <div class="post-time">١٥ أكتوبر ٢٠٢٢، الساعة ٠٤:٣٠ م</div>
+                    </div>
+                </div>
+                <div class="post-content">يوم جميل جداً اليوم! 
+
+الذكريات القديمة لا تعوض 💙✨</div>
+                <div class="post-footer-stats">
+                    <span class="likes-count"><i class="fa-solid fa-thumbs-up" style="color: #1877f2;"></i> 24</span>
+                    <span class="comments-count">3 تعليقات</span>
+                </div>
+                <div class="post-footer-buttons">
+                    <div class="footer-btn like-btn"><i class="fa-regular fa-thumbs-up"></i> أعجبني</div>
+                    <div class="footer-btn comment-toggle-btn"><i class="fa-regular fa-comment"></i> تعليق</div>
+                    <div class="footer-btn"><i class="fa-solid fa-share"></i> مشاركة</div>
+                </div>
+                <div class="comments-section">
+                    <div class="comment-list">
+                        <div class="comment-item"><b>سارة أحمد:</b> منور يا محمود!</div>
+                        <div class="comment-item"><b>خالد محمد:</b> صحيح والله أيام حلوة</div>
+                        <div class="comment-item"><b>عمر حسن:</b> بالتوفيق يارب</div>
+                    </div>
+                    <div class="comment-input-box">
+                        <input type="text" placeholder="اكتب تعليقاً..." class="comment-input">
+                        <button class="send-comment-btn"><i class="fa-solid fa-paper-plane"></i></button>
+                    </div>
+                </div>
+            </div> 
+
+        </div>
+    </div> 
+
+    <div class="modal" id="postModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span>إنشاء منشور</span>
+                <button class="close-btn" id="closeModalBtn">✕</button>
+            </div>
+            <div class="modal-body">
+                <textarea id="postTextContent" placeholder="بماذا تفكر يا أحمد؟"></textarea>
+            </div>
+            <div class="modal-footer">
+                <button class="submit-post-btn" id="publishBtn">نشر</button>
+            </div>
+        </div>
+    </div> 
+
+    <script>
+        function escapeHtml(text) {
+            if (!text) return '';
+            return text
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+        }
+
+        const modal = document.getElementById('postModal');
+        const openInput = document.getElementById('openModalInput');
+        const closeBtn = document.getElementById('closeModalBtn');
+        const publishBtn = document.getElementById('publishBtn');
+        const postTextContent = document.getElementById('postTextContent');
+        const feedContainer = document.getElementById('feedContainer'); 
+
+        openInput.addEventListener('click', () => {
+            modal.style.display = 'flex';
+            postTextContent.focus();
+        }); 
+
+        closeBtn.addEventListener('click', () => {
+            modal.style.display = 'none';
+            postTextContent.value = '';
+        }); 
+
+        window.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+                postTextContent.value = '';
+            }
+        }); 
+
+        document.addEventListener('click', function(e) {
+            if (e.target.closest('.like-btn')) {
+                const btn = e.target.closest('.like-btn');
+                const postCard = btn.closest('.post-card');
+                const likesCountSpan = postCard.querySelector('.likes-count');
+                let currentLikes = parseInt(likesCountSpan.textContent.replace(/\D/g, '')) || 0;
+
+                if (btn.classList.contains('liked')) {
+                    btn.classList.remove('liked');
+                    btn.innerHTML = '<i class="fa-regular fa-thumbs-up"></i> أعجبني';
+                    currentLikes--;
+                } else {
+                    btn.classList.add('liked');
+                    btn.innerHTML = '<i class="fa-solid fa-thumbs-up"></i> أعجبني';
+                    currentLikes++;
+                }
+                likesCountSpan.innerHTML = `<i class="fa-solid fa-thumbs-up" style="color: #1877f2;"></i> ${currentLikes}`;
+            }
+
+            if (e.target.closest('.comment-toggle-btn')) {
+                const btn = e.target.closest('.comment-toggle-btn');
+                const postCard = btn.closest('.post-card');
+                const commentInput = postCard.querySelector('.comment-input');
+                commentInput.focus();
+            }
+
+            if (e.target.closest('.send-comment-btn')) {
+                const sendBtn = e.target.closest('.send-comment-btn');
+                const box = sendBtn.closest('.comments-section');
+                const input = box.querySelector('.comment-input');
+                const commentText = input.value.trim();
+
+                if (commentText !== "") {
+                    const commentList = box.querySelector('.comment-list');
+                    const newComment = document.createElement('div');
+                    newComment.className = 'comment-item';
+                    newComment.innerHTML = `<b>أحمد محمد:</b> ${escapeHtml(commentText)}`;
+                    commentList.appendChild(newComment);
+                    
+                    input.value = '';
+                    commentList.scrollTop = commentList.scrollHeight;
+
+                    const postCard = box.closest('.post-card');
+                    const commentsCountSpan = postCard.querySelector('.comments-count');
+                    let currentComments = commentList.children.length;
+                    commentsCountSpan.textContent = `${currentComments} تعليقات`;
+                }
+            }
+        });
+
+        document.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter' && e.target.classList.contains('comment-input')) {
+                const input = e.target;
+                const box = input.closest('.comments-section');
+                const sendBtn = box.querySelector('.send-comment-btn');
+                sendBtn.click();
+            }
+        });
+
+        publishBtn.addEventListener('click', () => {
+            const text = postTextContent.value;
+            if (text.trim() === "") {
+                alert("الرجاء كتابة شيء للنشر!");
+                return;
+            } 
+
+            const newPostHTML = `
+                <div class="post-card">
+                    <div class="post-header">
+                        <div class="avatar">أ</div>
+                        <div class="post-user-info">
+                            <div class="post-username">أحمد محمد</div>
+                            <div class="post-time">الآن</div>
+                        </div>
+                    </div>
+                    <div class="post-content">${escapeHtml(text)}</div>
+                    <div class="post-footer-stats">
+                        <span class="likes-count"><i class="fa-solid fa-thumbs-up" style="color: #1877f2;"></i> 0</span>
+                        <span class="comments-count">0 تعليقات</span>
+                    </div>
+                    <div class="post-footer-buttons">
+                        <div class="footer-btn like-btn"><i class="fa-regular fa-thumbs-up"></i> أعجبني</div>
+                        <div class="footer-btn comment-toggle-btn"><i class="fa-regular fa-comment"></i> تعليق</div>
+                        <div class="footer-btn"><i class="fa-solid fa-share"></i> مشاركة</div>
+                    </div>
+                    <div class="comments-section">
+                        <div class="comment-list"></div>
+                        <div class="comment-input-box">
+                            <input type="text" placeholder="اكتب تعليقاً..." class="comment-input">
+                            <button class="send-comment-btn"><i class="fa-solid fa-paper-plane"></i></button>
+                        </div>
+                    </div>
+                </div>
+            `; 
+
+            const createPostBox = document.querySelector('.create-post-box');
+            createPostBox.insertAdjacentHTML('afterend', newPostHTML); 
+
+            postTextContent.value = '';
+            modal.style.display = 'none';
+        }); 
+    </script> 
+
+</body>
+</html>
