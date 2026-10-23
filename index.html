@@ -9,7 +9,7 @@
     <style>
         body {
             font-family: Tahoma, Arial, sans-serif;
-            font-weight: 700;
+            font-weight: 600;
             background-color: #f0f2f5;
             margin: 0;
             padding: 0;
@@ -33,7 +33,7 @@
 
         .logo-area {
             font-size: 28px;
-            font-weight: 900;
+            font-weight: 800;
             letter-spacing: -1px;
             color: #1877f2;
         } 
@@ -45,13 +45,12 @@
             padding: 8px 15px;
             width: 240px;
             font-family: Tahoma, Arial, sans-serif;
-            font-weight: 700;
+            font-weight: 600;
             outline: none;
-            box-sizing: border-box;
         } 
 
         .user-nav {
-            font-weight: 800;
+            font-weight: 700;
             font-size: 14px;
             color: #050505;
             display: flex;
@@ -94,9 +93,8 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-weight: 900;
+            font-weight: bold;
             margin-left: 10px;
-            flex-shrink: 0;
         } 
 
         .post-input-container input {
@@ -107,17 +105,16 @@
             padding: 10px 15px;
             font-size: 14px;
             font-family: Tahoma, Arial, sans-serif;
-            font-weight: 700;
+            font-weight: 600;
             outline: none;
             cursor: pointer;
-            box-sizing: border-box;
         } 
 
         .post-actions {
             display: flex;
             justify-content: space-around;
             padding-top: 8px;
-            font-weight: 800;
+            font-weight: 700;
             color: #65676b;
             font-size: 13px;
         } 
@@ -152,20 +149,20 @@
         } 
 
         .post-username {
-            font-weight: 900;
+            font-weight: 800;
             font-size: 15px;
             color: #050505;
         } 
 
         .post-time {
             font-size: 12px;
-            font-weight: 700;
+            font-weight: 600;
             color: #65676b;
         } 
 
         .post-content {
             font-size: 15px;
-            font-weight: 700;
+            font-weight: 600;
             color: #050505;
             line-height: 1.6;
             margin-bottom: 12px;
@@ -177,7 +174,7 @@
             display: flex;
             justify-content: space-between;
             font-size: 13px;
-            font-weight: 700;
+            font-weight: 600;
             color: #65676b;
             border-bottom: 1px solid #e4e6eb;
             padding-bottom: 8px;
@@ -187,7 +184,7 @@
         .post-footer-buttons {
             display: flex;
             justify-content: space-around;
-            font-weight: 800;
+            font-weight: 700;
             color: #65676b;
             font-size: 13px;
             border-bottom: 1px solid #e4e6eb;
@@ -229,8 +226,6 @@
             border-radius: 15px;
             margin-bottom: 5px;
             font-size: 13px;
-            font-weight: 700;
-            word-break: break-word;
         }
 
         .comment-input-box {
@@ -247,8 +242,7 @@
             font-size: 13px;
             outline: none;
             font-family: Tahoma, Arial, sans-serif;
-            font-weight: 700;
-            box-sizing: border-box;
+            font-weight: 600;
         }
 
         .comment-input-box button {
@@ -256,11 +250,11 @@
             border: none;
             color: #1877f2;
             cursor: pointer;
-            font-weight: 900;
+            font-weight: bold;
             font-size: 14px;
         }
 
-        /* نافذة النشر المُحدثة */
+        /* نافذة النشر المُحدثة لتكون أطول وأكبر */
         .modal {
             display: none;
             position: fixed;
@@ -277,7 +271,7 @@
         .modal-content {
             background: white;
             width: 500px;
-            min-height: 350px;
+            min-height: 350px; /* زيادة طول النافذة */
             border-radius: 8px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.15);
             display: flex;
@@ -291,7 +285,7 @@
             align-items: center;
             padding: 12px 16px;
             border-bottom: 1px solid #e4e6eb;
-            font-weight: 900;
+            font-weight: 800;
             font-size: 18px;
         } 
 
@@ -302,7 +296,7 @@
             width: 32px;
             height: 32px;
             cursor: pointer;
-            font-weight: 900;
+            font-weight: bold;
             font-size: 16px;
         } 
 
@@ -313,16 +307,15 @@
 
         .modal-body textarea {
             width: 100%;
-            height: 200px;
+            height: 200px; /* زيادة طول مساحة الكتابة */
             border: none;
             resize: none;
             font-family: Tahoma, Arial, sans-serif;
-            font-weight: 700;
+            font-weight: 600;
             font-size: 16px;
             outline: none;
             line-height: 1.6;
             white-space: pre-wrap;
-            box-sizing: border-box;
         } 
 
         .modal-footer {
@@ -337,7 +330,7 @@
             width: 100%;
             padding: 12px;
             border-radius: 6px;
-            font-weight: 900;
+            font-weight: 800;
             font-size: 16px;
             cursor: pointer;
         } 
@@ -387,7 +380,7 @@
                 <div class="post-content">الحمد لله على كل حال، بداية أسبوع موفق للجميع إن شاء الله 🌸</div>
                 <div class="post-footer-stats">
                     <span class="likes-count"><i class="fa-solid fa-thumbs-up" style="color: #1877f2;"></i> 45</span>
-                    <span class="comments-count">1 تعليقات</span>
+                    <span class="comments-count">7 تعليقات</span>
                 </div>
                 <div class="post-footer-buttons">
                     <div class="footer-btn like-btn"><i class="fa-regular fa-thumbs-up"></i> أعجبني</div>
@@ -458,16 +451,6 @@
     </div> 
 
     <script>
-        function escapeHtml(text) {
-            if (!text) return '';
-            return text
-                .replace(/&/g, "&amp;")
-                .replace(/</g, "&lt;")
-                .replace(/>/g, "&gt;")
-                .replace(/"/g, "&quot;")
-                .replace(/'/g, "&#039;");
-        }
-
         const modal = document.getElementById('postModal');
         const openInput = document.getElementById('openModalInput');
         const closeBtn = document.getElementById('closeModalBtn');
@@ -511,16 +494,8 @@
                 likesCountSpan.innerHTML = `<i class="fa-solid fa-thumbs-up" style="color: #1877f2;"></i> ${currentLikes}`;
             }
 
-            if (e.target.closest('.comment-toggle-btn')) {
-                const btn = e.target.closest('.comment-toggle-btn');
-                const postCard = btn.closest('.post-card');
-                const commentInput = postCard.querySelector('.comment-input');
-                commentInput.focus();
-            }
-
             if (e.target.closest('.send-comment-btn')) {
-                const sendBtn = e.target.closest('.send-comment-btn');
-                const box = sendBtn.closest('.comments-section');
+                const box = e.target.closest('.comments-section');
                 const input = box.querySelector('.comment-input');
                 const commentText = input.value.trim();
 
@@ -539,15 +514,6 @@
                     let currentComments = commentList.children.length;
                     commentsCountSpan.textContent = `${currentComments} تعليقات`;
                 }
-            }
-        });
-
-        document.addEventListener('keypress', function(e) {
-            if (e.key === 'Enter' && e.target.classList.contains('comment-input')) {
-                const input = e.target;
-                const box = input.closest('.comments-section');
-                const sendBtn = box.querySelector('.send-comment-btn');
-                sendBtn.click();
             }
         });
 
@@ -593,7 +559,18 @@
             postTextContent.value = '';
             modal.style.display = 'none';
         }); 
+
+        function escapeHtml(text) {
+            return text
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+        }
     </script> 
 
 </body>
 </html>
+
+mmm
